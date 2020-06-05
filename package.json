@@ -1,0 +1,10 @@
+{
+  "name": "grumpus",
+  "version": "0.0.0-dev",
+  "description": "Gets upset if your API data is bad!",
+  "main": "index.js",
+  "repository": "https://github.com/williamareynolds/grumpus.git",
+  "author": "William Reynolds <williamareynolds@icloud.com>",
+  "license": "MIT",
+  "private": false
+}
