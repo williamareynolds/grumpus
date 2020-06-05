@@ -6,5 +6,7 @@
   "repository": "https://github.com/williamareynolds/grumpus.git",
   "author": "William Reynolds <williamareynolds@icloud.com>",
   "license": "MIT",
-  "private": false
+  "devDependencies": {
+    "commitizen": "^4.1.2"
+  }
 }
