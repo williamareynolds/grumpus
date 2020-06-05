@@ -32,6 +32,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [
         "commitizen",
         "npm:4.1.2"
+      ],
+      [
+        "cz-conventional-changelog",
+        "npm:3.2.0"
       ]
     ],
     "locationBlacklistData": [
@@ -41,7 +45,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
-            ["commitizen", "npm:4.1.2"]
+            ["commitizen", "npm:4.1.2"],
+            ["cz-conventional-changelog", "npm:3.2.0"]
           ],
           "linkType": "SOFT",
         }]
@@ -867,7 +872,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["grumpus", "workspace:."],
-            ["commitizen", "npm:4.1.2"]
+            ["commitizen", "npm:4.1.2"],
+            ["cz-conventional-changelog", "npm:3.2.0"]
           ],
           "linkType": "SOFT",
         }]

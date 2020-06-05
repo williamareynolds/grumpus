@@ -7,6 +7,7 @@
   "author": "William Reynolds <williamareynolds@icloud.com>",
   "license": "MIT",
   "devDependencies": {
-    "commitizen": "^4.1.2"
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0"
   }
 }

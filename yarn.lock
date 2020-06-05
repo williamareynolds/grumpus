@@ -415,7 +415,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cz-conventional-changelog@npm:3.2.0":
+"cz-conventional-changelog@npm:3.2.0, cz-conventional-changelog@npm:^3.2.0":
   version: 3.2.0
   resolution: "cz-conventional-changelog@npm:3.2.0"
   dependencies:
@@ -734,6 +734,7 @@ __metadata:
   resolution: "grumpus@workspace:."
   dependencies:
     commitizen: ^4.1.2
+    cz-conventional-changelog: ^3.2.0
   languageName: unknown
   linkType: soft
 
