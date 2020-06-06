@@ -1,3 +1,2 @@
 .idea
-.yarn/unplugged
-.yarn/build-stage.yml
+node_modules/
