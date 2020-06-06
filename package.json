@@ -19,12 +19,16 @@
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
     }
   },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --cache --fix"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
@@ -38,6 +42,7 @@
     "eslint": "^7.2.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "lint-staged": "^10.2.9",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
   }
