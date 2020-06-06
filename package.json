@@ -6,6 +6,11 @@
   "repository": "https://github.com/williamareynolds/grumpus.git",
   "author": "William Reynolds <williamareynolds@icloud.com>",
   "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "devDependencies": {
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0"
