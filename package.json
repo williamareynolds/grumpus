@@ -46,5 +46,8 @@
     "lint-staged": "^10.2.9",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "fp-ts": "^2.6.2"
   }
 }
