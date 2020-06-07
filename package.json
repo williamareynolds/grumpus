@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "fp-ts": "^2.6.2"
+    "fp-ts": "^2.6.2",
+    "jest-mock-axios": "^4.2.0"
   }
 }
