@@ -20,7 +20,8 @@
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "tsc && jest && lint-staged"
+      "pre-commit": "tsc && jest && lint-staged",
+      "pre-push": "tsc && jest --collectCoverage && eslint --no-cache src"
     }
   },
   "jest": {
