@@ -2,7 +2,6 @@ import * as fc from 'fast-check'
 import { assertEndpointSchema, assertEndpointStatus } from './assertion'
 import * as E from 'fp-ts/lib/Either'
 import { make } from 'io-ts/lib/Schema'
-import exp from 'constants'
 
 describe('assertEndpointStatus', () => {
   it('returns success when args match', () => {

@@ -1,7 +1,7 @@
 import { interpreter, Schema } from 'io-ts/lib/Schema'
 import { schemableDecoder } from 'io-ts/lib/Decoder'
 import * as E from 'fp-ts/lib/Either'
-import {Failure, Success} from './check-endpoint'
+import {Failure} from './check-endpoint'
 import {draw} from 'io-ts/lib/Tree'
 
 interface HasStatus {

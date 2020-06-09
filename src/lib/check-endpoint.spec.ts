@@ -1,5 +1,5 @@
 import * as E from 'fp-ts/lib/Either'
-import {checkEndpoint, Expectations} from './check-endpoint'
+import {checkEndpoint} from './check-endpoint'
 import axios from 'axios'
 import {make} from 'io-ts/lib/Schema'
 
