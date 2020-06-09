@@ -20,12 +20,26 @@
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "tsc && lint-staged"
+      "pre-commit": "tsc && jest && lint-staged",
+      "pre-push": "tsc && jest --collectCoverage && eslint --no-cache src"
     }
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/src"],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "coverageReporters": ["json", "lcov", "text", "clover"]
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix"
@@ -46,5 +60,11 @@
     "lint-staged": "^10.2.9",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fp-ts": "^2.6.2",
+    "io-ts": "^2.2.4",
+    "jest-mock-axios": "^4.2.0"
   }
 }
