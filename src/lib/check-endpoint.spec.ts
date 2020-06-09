@@ -3,13 +3,18 @@ import {checkEndpoint} from './check-endpoint'
 import axios from 'axios'
 import {make} from 'io-ts/lib/Schema'
 
+jest.mock('axios', () => ({
+  get: jest.fn()
+}))
 
 describe('checkEndpoint', () => {
   it('returns a success state', async () => {
-    axios.get = jest.fn(async () => ({
-      status: 200,
-      data: 'foo'
-    }) as any)
+    (axios.get as jest.Mock).mockImplementationOnce(() => {
+      return {
+        status: 200,
+        data: 'foo'
+      }
+    })
 
     const url = 'http://abc.com/api/health'
     const schema = make(s => s.string)
