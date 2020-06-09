@@ -1,7 +1,8 @@
 import { interpreter, Schema } from 'io-ts/lib/Schema'
 import { schemableDecoder } from 'io-ts/lib/Decoder'
 import * as E from 'fp-ts/lib/Either'
-import { Failure } from './check-endpoint'
+import {Failure, Success} from './check-endpoint'
+import {draw} from 'io-ts/lib/Tree'
 
 interface HasStatus {
   status: number
@@ -21,6 +22,9 @@ export const assertEndpointStatus = (expected: number) => <R extends HasStatus>(
 
 export const assertEndpointSchema =
   <S>(s: Schema<S>, d = schemableDecoder, i = interpreter) =>
-    <R extends HasData>(actual: R) => {
-      return E.right({data: 'success'})
+    <R extends HasData>(actual: R): E.Either<Failure, R> => {
+      const res = i(d)(s).decode(actual.data)
+      return E.isRight(res)
+        ? E.right(actual)
+        : E.left({ message: `Schema validation failed: \n\n${draw(res.left)}`})
     }

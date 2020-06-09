@@ -2,6 +2,7 @@ import * as fc from 'fast-check'
 import { assertEndpointSchema, assertEndpointStatus } from './assertion'
 import * as E from 'fp-ts/lib/Either'
 import { make } from 'io-ts/lib/Schema'
+import exp from 'constants'
 
 describe('assertEndpointStatus', () => {
   it('returns success when args match', () => {
@@ -37,13 +38,54 @@ describe('assertEndpointStatus', () => {
 })
 
 describe('assertEndpointSchema', () => {
-  it('returns success', () => {
+  it('returns the response when it successfully decodes a string', () => {
     const s = make(s => s.string)
     const d = {
       data: 'test'
     }
     const actual = assertEndpointSchema(s)(d)
     expect(E.isRight(actual)).toBe(true)
+    E.either.map(actual, r => {
+      expect(r.data).toBe('test')
+    })
+  })
+
+  it('returns a Failure with the decode printout if decoding fails', () => {
+    const s = make(s => s.string)
+    const d = {
+      data: 5
+    }
+    const actual = assertEndpointSchema(s)(d)
+    expect(E.isLeft(actual)).toBe(true)
+    E.either.mapLeft(actual, r => {
+      expect(r.message).toContain('string')
+      expect(r.message).toContain('5')
+    })
+  })
+
+  it('contains all failures when a deeply nested object fails decoding', () => {
+    const s = make(s => s.type({
+      foo: s.string,
+      bar: s.type({
+        baz: s.number
+      })
+    }))
+    const d = {
+      data: {
+        foo: 5,
+        bar: {
+          baz: 'fizz'
+        }
+      }
+    }
+    const actual = assertEndpointSchema(s)(d)
+    expect(E.isLeft(actual)).toBe(true)
+    E.either.mapLeft(actual, r => {
+      expect(r.message).toContain('5')
+      expect(r.message).toContain('string')
+      expect(r.message).toContain('fizz')
+      expect(r.message).toContain('number')
+    })
   })
 })
 
