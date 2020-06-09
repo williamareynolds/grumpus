@@ -6,6 +6,14 @@
   "repository": "https://github.com/williamareynolds/grumpus.git",
   "author": "William Reynolds <williamareynolds@icloud.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "ci.test": "run-s build lint test.coverage",
+    "lint": "eslint src",
+    "lint.fix": "eslint --fix src",
+    "test": "jest",
+    "test.coverage": "jest --coverage"
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -27,7 +35,9 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "roots": ["<rootDir>/src"],
+    "roots": [
+      "<rootDir>/src"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
@@ -39,7 +49,12 @@
         "statements": 80
       }
     },
-    "coverageReporters": ["json", "lcov", "text", "clover"]
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ]
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix"
@@ -58,6 +73,7 @@
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.9",
+    "npm-run-all": "^4.1.5",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
   },
