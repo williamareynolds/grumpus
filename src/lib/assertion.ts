@@ -12,14 +12,17 @@ interface HasData<T = unknown> {
   data: T
 }
 
-export const assertEndpointStatus = (expected: number) => <R extends HasStatus>(actual: R): E.Either<Failure, R> => {
-  return expected === actual.status
-    ? E.right(actual)
-    : E.left({
-      message: `Expected status ${expected} but received status ${actual.status}`
-    })
-}
+/** Assert that the status code returned from an endpoint matches a certain value. */
+export const assertEndpointStatus = (expected: number) =>
+  <R extends HasStatus>(actual: R): E.Either<Failure, R> => {
+    return expected === actual.status
+      ? E.right(actual)
+      : E.left({
+        message: `Expected status ${expected} but received status ${actual.status}`
+      })
+  }
 
+/** Assert that data returned from an endpoint matches an io-ts schema. */
 export const assertEndpointSchema =
   <S>(s: Schema<S>, d = schemableDecoder, i = interpreter) =>
     <R extends HasData>(actual: R): E.Either<Failure, R> => {
