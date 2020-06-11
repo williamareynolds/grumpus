@@ -4,6 +4,8 @@
   "description": "Gets upset if your API data is bad!",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "files": ["dist"],
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/williamareynolds/grumpus.git",
   "author": "William Reynolds <williamareynolds@icloud.com>",
   "license": "MIT",
