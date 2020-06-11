@@ -2,17 +2,22 @@
   "name": "grumpus",
   "version": "0.0.0-dev",
   "description": "Gets upset if your API data is bad!",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": ["dist"],
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/williamareynolds/grumpus.git",
   "author": "William Reynolds <williamareynolds@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "ci.test": "run-s build lint test.coverage",
+    "build": "rimraf dist && rollup -c rollup.config.ts",
+    "ci.test": "run-s compile lint test.coverage",
+    "compile": "tsc",
     "lint": "eslint src",
     "lint.fix": "eslint --fix src",
     "test": "jest",
-    "test.coverage": "jest --coverage"
+    "test.coverage": "jest --coverage",
+    "test.e2e": "jest -c test/jest-e2e.config.json"
   },
   "commitlint": {
     "extends": [
@@ -74,6 +79,9 @@
     "jest": "^26.0.1",
     "lint-staged": "^10.2.9",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.15.0",
+    "rollup-plugin-typescript2": "^0.27.1",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
   },
