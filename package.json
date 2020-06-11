@@ -2,10 +2,22 @@
   "name": "grumpus",
   "version": "0.0.0-dev",
   "description": "Gets upset if your API data is bad!",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": ["dist"],
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/williamareynolds/grumpus.git",
   "author": "William Reynolds <williamareynolds@icloud.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && rollup -c rollup.config.ts",
+    "ci.test": "run-s build lint test.coverage test.e2e",
+    "lint": "eslint src",
+    "lint.fix": "eslint --fix src",
+    "test": "jest",
+    "test.coverage": "jest --coverage",
+    "test.e2e": "jest -c test/jest-e2e.config.json"
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -20,12 +32,33 @@
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+      "pre-commit": "tsc && jest && lint-staged",
+      "pre-push": "tsc && jest --collectCoverage && eslint --no-cache src"
     }
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ]
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix"
@@ -44,7 +77,17 @@
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.9",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.15.0",
+    "rollup-plugin-typescript2": "^0.27.1",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fp-ts": "^2.6.2",
+    "io-ts": "^2.2.4",
+    "jest-mock-axios": "^4.2.0"
   }
 }

@@ -1,5 +1,1 @@
-const add = (a: number) => (b: number): number => a + b
-
-export {
-  add
-}
+export * from './lib/check-endpoint'
