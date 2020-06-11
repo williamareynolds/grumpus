@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.ts",
-    "ci.test": "run-s compile lint test.coverage",
+    "ci.test": "run-s compile lint test.coverage test.e2e",
     "compile": "tsc",
     "lint": "eslint src",
     "lint.fix": "eslint --fix src",
