@@ -2,6 +2,10 @@
 
 It gets upset if your API data is bad!
 
+## All of the Badges
+
+[![Build Status](https://travis-ci.com/williamareynolds/grumpus.svg?token=4KHz4TKq1ydcqkZZM9YK&branch=master)](https://travis-ci.com/williamareynolds/grumpus)
+
 ## Purpose
 
 Testing an API can be an arduous task. You have to check to make sure the API returns
