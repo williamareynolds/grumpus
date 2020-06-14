@@ -28,7 +28,12 @@ your schema for testing and generating test data, you can keep them separate fro
 your runtime source. Once you have your schema, you can use the `checkEndpoint`
 function to test an endpoint with a schema. 
 
-```typescript 
+```typescript
+import * as RTE from 'fp-ts/lib/ReaderTaskEither'
+import * as E from 'fp-ts/lib/Either'
+import {make, TypeOf} from 'io-ts/lib/Schema'
+import {CheckEndpointDeps, checkEndpoint} from 'grumpus' 
+
 const articleSchema = make(s => s.type({ id: s.number, content: s.string }))
 type Article = TypeOf<typeof articleSchema>
 
@@ -39,4 +44,17 @@ const testData: CheckEndpointDeps<Article> = {
     status: 200
   }
 }
+
+describe('The articles endpoint', () => {
+  it('returns a valid Article', () =>{
+
+    // Your data's structure is checked automatically
+    RTE.run(checkEndpoint, testData).then(e => {
+      E.either.map(e, r => {
+        // Additional assertions go here
+        expect(r.statusText).toBe('OK')
+      })
+    })
+  })
+})
 ```
