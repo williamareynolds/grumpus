@@ -1,4 +1,3 @@
-import * as T from 'fp-ts/lib/Task'
 import * as E from 'fp-ts/lib/Either'
 import * as TE from 'fp-ts/lib/TaskEither'
 import { AxiosResponse } from 'axios'
@@ -31,10 +30,10 @@ export type CheckEndpointDeps<T> = {
 export const checkEndpoint = <R>(deps: CheckEndpointDeps<R>): TE.TaskEither<Failure, Success<R>> => {
   return pipe(
     getTask<TypeOf<typeof deps.expectations.schema>>(deps.url),
-    T.map(r => pipe(
+    TE.chain(r => TE.fromEither(pipe(
       r,
       assertEndpointStatus(deps.expectations.status),
       E.chain(assertEndpointSchema(deps.expectations.schema))
-    )),
+    ))),
   )
 }
