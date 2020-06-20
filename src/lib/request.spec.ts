@@ -30,5 +30,21 @@ describe('request functions', () => {
         }
       ), { numRuns: 20 })
     })
+
+    it('provides a default message if none was given', () => {
+      (axios.get as jest.Mock).mockImplementationOnce((_: string) => {
+        throw 'Error'
+      })
+
+      const url = 'www.internet.web'
+      const res = getTask(url)
+      const runAssertions = T.task.map(res, e => {
+        expect(E.isLeft(e)).toBe(true)
+        E.either.mapLeft(e, m => {
+          expect(m.message).toContain(url)
+        })
+      })
+      runAssertions()
+    })
   })
 })
