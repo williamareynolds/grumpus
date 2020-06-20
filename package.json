@@ -90,10 +90,9 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "jest-mock-axios": "^4.2.0"
+    "axios": "^0.19.2"
   },
   "peerDependencies": {
-    "axios": ">=0.17.0 <0.20.0",
     "fp-ts": "^2",
     "io-ts": "^2.2.4"
   }
