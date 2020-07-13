@@ -4,7 +4,10 @@
   "description": "Gets upset if your API data is bad!",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "files": ["dist"],
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "types": "dist/index.d.ts",
   "repository": "https://github.com/williamareynolds/grumpus.git",
   "author": "William Reynolds <williamareynolds@icloud.com>",
@@ -70,11 +73,14 @@
     "@types/node": "^14.0.11",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
+    "axios": "^0.19.2",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.2.0",
     "fast-check": "^1.24.2",
+    "fp-ts": "^2.6.5",
     "husky": "^4.2.5",
+    "io-ts": "^2.2.4",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.9",
     "npm-run-all": "^4.1.5",
@@ -85,9 +91,10 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "fp-ts": "^2.6.2",
-    "io-ts": "^2.2.4",
-    "jest-mock-axios": "^4.2.0"
+    "axios": "^0.19.2"
+  },
+  "peerDependencies": {
+    "fp-ts": "^2",
+    "io-ts": "^2.2.4"
   }
 }

@@ -22,6 +22,7 @@ export default {
     'axios',
     'fp-ts/lib/Either',
     'fp-ts/lib/Task',
+    'fp-ts/lib/TaskEither',
     'fp-ts/lib/pipeable',
     'io-ts/lib/Decoder',
     'io-ts/lib/Schema',
