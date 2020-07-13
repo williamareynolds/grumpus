@@ -4,6 +4,7 @@
   "description": "Gets upset if your API data is bad!",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
